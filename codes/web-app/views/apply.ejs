@@ -1,0 +1,87 @@
+<% include _header %>
+
+<form action="/apply" method="post">
+
+<h3><%= center.centerName %></h3>
+<input type="hidden" name="subscriberEmail" value="<%= center.subscriberEmail %>">
+
+<label><%= center.centerAddress %></label>
+<br>
+<label><%= center.centerAvailable %></label>
+<br>
+<label><%= center.centerContact %></label>
+<br>
+<br>
+
+<label>Parent/Guardian</label>
+<br>
+<br>
+
+
+<% if(option.askCustomerName) { %>  
+<input type="text" name="customerName" placeholder="Name as in NRIC / FIN / Passport" required>
+<br>
+<% } %>
+
+<% if(option.askCustomerPersonId) { %>  
+<input type="text" name="customerPersonId" placeholder="NRIC / FIN / Passport No." required >
+<br>
+<% } %>
+
+<% if(option.askCustomerRelationship) { %>  
+<input type="text" name="customerRelationship" placeholder="Relationship to child" required >
+<br>
+<% } %>
+
+<% if(option.askCustomerAddress) { %>  
+<input type="text" name="customerAddress" placeholder="Address" required>
+<br>
+<% } %>
+
+<% if(option.askCustomerContact) { %>  
+<input type="text" name="customerContact" placeholder="Contact number" required >
+<br>
+<% } %>
+
+<% if(option.askCustomerEmail) { %>  
+<input type="text" name="customerEmail" placeholder="Email" required>
+<br>
+<% } %>
+
+<br>
+<br>
+
+<label>Child</label>
+<br>
+<br>
+<% if(option.askChildName) { %>  
+<input type="text" name="childName" placeholder="Name as in birth certificate" required>
+<br>
+<% } %>
+
+<% if(option.askChildBirthCertificateNo) { %>  
+<input type="text" name="childBirthCertificateNo" placeholder="Birth certificate no." required>
+<br>
+<% } %>
+
+<% if(option.askChildDateOfBirth) { %>  
+<input type="text" name="childDateOfBirth" placeholder="Date of birth" required >
+<br>
+<% } %>
+
+<% if(option.askChildGender) { %>  
+
+<label><input type="radio" name="childGender" value="Male" required >&nbsp; Male</label>
+<label><input type="radio" name="childGender" value="Female" required >&nbsp; Female</label>
+<br>
+
+<% } %>
+
+<br>
+<br>
+
+<input type="submit" value="Apply">
+
+</form>
+
+<% include _footer %>

@@ -1,0 +1,52 @@
+<% include _header %>
+
+<% include _menu %>
+
+<h2>Profile</h2>
+
+
+<form action="/kindergarten/profile" method="post">
+
+<label>Kindergarten Center</label>
+<br>
+<br>
+<input type="text" name="centerName" placeholder="Center full name" value="<%= currentUser.centerName || "" %>" required>
+<br>
+<input type="text" name="centerAddress" placeholder="Address" value="<%= currentUser.centerAddress || "" %>" required>
+<br>
+<input type="text" name="centerAvailable" placeholder="Available (e.g. 10)" value="<%= currentUser.centerAvailable || "" %>" required>
+<br>
+<input type="text" name="centerContact" placeholder="Contact Number (e.g. 65 1234 5678)" value="<%= currentUser.centerContact || "" %>" required>
+<br>
+<input type="text" name="centerPrice" placeholder="Price (e.g. 1000" value="<%= currentUser.centerPrice || "" %>" required>
+<br>
+<br>
+<label>Contact Person</label>
+<br>
+<br>
+<input type="text" name="subscriberName" placeholder="Full name" value="<%= currentUser.subscriberName || "" %>">
+<br>
+<input type="text" name="subscriberContact" placeholder="Contact Number (e.g. 65 1234 5678)" value="<%= currentUser.subscriberContact || "" %>">
+<br>
+<br>
+<label>Subscriber Access</label>
+<br>
+<br>
+<label><%= currentUser.subscriberEmail %></label>
+<br>
+<br>
+<label>Subscription</label>
+<br>
+<br>
+<% var isFree = currentUser.isPremium() ? "" : "checked" %>
+<% var isPremium = currentUser.isPremium() ? "checked" : "" %>
+<label><input type="radio" name="subscriptionType" value="Free" <%= isFree %> >&nbsp; Free</label>
+<label><input type="radio" name="subscriptionType" value="Premium" <%= isPremium %>>&nbsp; Premium</label>
+<br>
+<br>
+
+<input type="submit" value="Save">
+</form>
+
+
+<% include _footer %>

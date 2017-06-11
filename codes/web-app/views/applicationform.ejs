@@ -1,0 +1,85 @@
+<% include _header %>
+
+<% include _menu %>
+
+<h2>Application Form</h2>
+
+<form action="/kindergarten/applicationform" method="post">
+
+  <label>Parent/Guardian</label>
+  <br>
+  <br>
+
+  <label>
+    <input type="hidden" name="askCustomerName" value="1">
+    <input type="checkbox" name="askCustomerName" <%= form.askCustomerName ? "checked" : "" %> disabled >
+    Name as in NRIC / FIN / Passport
+  </label>
+  <br>
+  <label>
+    <input type="hidden" name="askCustomerPersonId" value="1">
+    <input type="checkbox" name="askCustomerPersonId" <%= form.askCustomerPersonId ? "checked" : "" %> disabled >
+    NRIC / FIN / Passport No.
+  </label>
+  <br>
+  <label>
+    <input type="hidden" name="askCustomerRelationship" value="0">
+    <input type="checkbox" name="askCustomerRelationship" <%= form.askCustomerRelationship ? "checked" : "" %> >
+    Relationship to child
+  </label>
+  <br>
+  <label>
+    <input type="hidden" name="askCustomerAddress" value="0">
+    <input type="checkbox" name="askCustomerAddress" <%= form.askCustomerAddress ? "checked" : "" %> >
+    Address
+  </label>
+  <br>
+  <label>
+    <input type="hidden" name="askCustomerContact" value="1">
+    <input type="checkbox" name="askCustomerContact" <%= form.askCustomerContact ? "checked" : "" %> disabled >
+    Contact number
+  </label>
+  <br>
+  <label>
+    <input type="hidden" name="askCustomerEmail" value="0">
+    <input type="checkbox" name="askCustomerEmail" <%= form.askCustomerEmail ? "checked" : "" %> >
+    Email
+  </label>
+  <br>
+  <br>
+
+  <label>Child</label>
+  <br>
+  <br>
+
+  <label>
+    <input type="hidden" name="askChildName" value="1">
+    <input type="checkbox" name="askChildName" <%= form.askChildName ? "checked" : "" %> disabled >
+    Name as in birth certificate
+  </label>
+  <br>
+  <label>
+    <input type="hidden" name="askChildBirthCertificateNo" value="1">
+    <input type="checkbox" name="askChildBirthCertificateNo" <%= form.askChildBirthCertificateNo ? "checked" : "" %> disabled >
+    Birth certificate no.
+  </label>
+  <br>
+  <label>
+    <input type="hidden" name="askChildDateOfBirth" value="0">
+    <input type="checkbox" name="askChildDateOfBirth" <%= form.askChildDateOfBirth ? "checked" : "" %> >
+    Date of birth
+  </label>
+  <br>
+  <label>
+    <input type="hidden" name="askChildGender" value="0">
+    <input type="checkbox" name="askChildGender" <%= form.askChildGender ? "checked" : "" %> >
+    Gender
+  </label>
+  <br>
+  <br>
+  <input type="submit" value="Save">
+
+</form>
+
+
+<% include _footer %>

@@ -1,0 +1,50 @@
+<% include _header %>
+
+<h3>Subscribe to Kid-n-Roll</h3>
+
+<form action="/signup" method="post">
+
+<label>Kindergarten Center</label>
+<br>
+<br>
+<input type="text" name="centerName" placeholder="Center full name">
+<br>
+<input type="text" name="centerAddress" placeholder="Address">
+<br>
+<input type="text" name="centerAvailable" placeholder="Available (e.g. 10)">
+<br>
+<input type="text" name="centerContact" placeholder="Contact Number (e.g. 65 1234 5678)">
+<br>
+<input type="text" name="centerPrice" placeholder="Price (e.g. 1000">
+<br>
+<br>
+<label>Contact Person</label>
+<br>
+<br>
+<input type="text" name="subscriberName" placeholder="Full name">
+<br>
+<input type="text" name="subscriberContact" placeholder="Contact Number (e.g. 65 1234 5678)">
+<br>
+<br>
+<label>Subscriber Access</label>
+<br>
+<br>
+<input type="text" name="subscriberEmail" placeholder="Email Address (used for access to Kid-n-Roll">
+<br>
+<input type="text" name="subscriberPassword" placeholder="Preferred Password">
+<br>
+<input type="text" name="confirmSubscriberPassword" placeholder="Confirm Password">
+<br>
+<br>
+<label>Subscription</label>
+<br>
+<br>
+<label><input type="radio" name="subscriptionType" value="Free">&nbsp; Free</label>
+<label><input type="radio" name="subscriptionType" value="Premium">&nbsp; Premium</label>
+<br>
+<br>
+
+<input type="submit" value="Subscribe">
+</form>
+
+<% include _footer %>

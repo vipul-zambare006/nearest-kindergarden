@@ -1,0 +1,147 @@
+<% include _header %>
+
+<form action="/" method="post">
+  <input type="text" name="address" placeholder="Type in your address and click 'Go'" value="<%= myAddress || "" %>">
+  <select name="distance">
+    <option selected value="1">1 km</option>
+    <option value="2">2 km</option>
+    <option value="5">5 km</option>
+    <option value="10">10 km</option>
+  </select>
+  <input type="submit" value="Go">
+</form>
+
+<div class="container">
+  
+  <div class="result-container">
+    <% records.forEach(function(r) { %>
+    <div>
+      <br>
+      <%= r.centerName %>
+      <br>
+      <%= r.centerAddress %>
+      <br>
+      Available : <%= r.centerAvailable %> 
+      <br>
+      Contact : <%= r.centerContact %>
+      <br>
+      <a href="#" class="show-on-map" data-lng="<%= r.centerCoordinates[0]%>" data-lat="<%= r.centerCoordinates[1]%>">Show on Map</a>
+      <% if (r.isPremium()) { %>
+      |
+      <a href="/apply/<%= r.centerName %>">Apply</a>
+      <% } %>
+    </div>
+    <% }) %>
+
+  </div>
+
+  <div class="map-container">
+    <br>
+    <a href="#" id="showAllOnMap">Show All</a>
+    <br>
+    <br>
+
+    <div id="map" style="height: 600px; width: 100%">
+    </div>
+
+  </div>
+</div>
+
+
+<script type="text/javascript">
+  // credits : Node.js 6.x Blueprints by Fernando Monteiro at https://www.packtpub.com/web-development/nodejs-6x-blueprints
+
+  var initMap = function(){
+
+    // mark demo location... NUS-ISS of course!
+    var myAddress = "<%= myAddress %>";
+    var long = <%= myLng %>;
+    var lat = <%= myLat %>;
+    var showAllZoom = 12;
+    var showOneZoom = 18;
+
+    var myLocation = new google.maps.LatLng(lat, long);
+    var options = {
+      zoom: showAllZoom,
+      center: myLocation,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    var target = document.getElementById('map');
+    var googleMap = new google.maps.Map(target, options);
+
+    var myMarker = new google.maps.Marker({
+      map: googleMap,
+      position: myLocation,
+      animation: google.maps.Animation.DROP
+    });
+
+    var info = new google.maps.InfoWindow();
+    google.maps.event.addListener(myMarker, 'click', function(){
+      info.setContent('<p>'+ myAddress +'</p>');
+      info.open(googleMap, this);
+    });
+
+
+    // mark search result locations
+    var locations = <%- JSON.stringify(records.map(function(r){
+      return {
+        centerName : r.centerName,
+        isPremium : r.isPremium(),
+        longitude : r.centerCoordinates[0],
+        latitude : r.centerCoordinates[1]
+      };
+    })) %>;
+
+    locations.forEach(function(l){
+      var lng = l.longitude;
+      var lat = l.latitude;
+      var latLng = new google.maps.LatLng(lat, lng);
+      var marker = new google.maps.Marker({
+        map: googleMap,
+        position: latLng,
+        animation: google.maps.Animation.DROP
+      });
+
+      var info = new google.maps.InfoWindow();
+      google.maps.event.addListener(marker, 'click', function(){
+        var content = 
+          "<p>" +  
+          l.centerName + 
+          ((l.isPremium) ? "<br><br> <a href='/apply/" + l.centerName + "' >Apply</a>" : "") +
+          "</p>";
+        info.setContent(content);
+        info.open(googleMap, this);
+      });
+
+    });
+    
+    // 'show on map' feature
+    var links = document.querySelectorAll(".show-on-map");
+    for (var i = 0; i < links.length; i++) {
+      links[i].addEventListener("click", function(e){
+        e.preventDefault();
+
+        // var targetLocation = locations[i];
+        var longitude = Number(this.getAttribute('data-lng'));
+        var latitude = Number(this.getAttribute('data-lat'));
+
+        googleMap.setCenter({lat: latitude, lng: longitude});
+        googleMap.setZoom(showOneZoom);
+
+      })
+    }
+
+    var showAllOnMap = document.getElementById("showAllOnMap");
+    showAllOnMap.addEventListener("click", function(e){
+      e.preventDefault();
+      googleMap.setCenter({lat: lat, lng: long});
+      googleMap.setZoom(showAllZoom);
+    })
+
+  };
+
+  window.onload = initMap;
+</script>
+
+
+<% include _footer %>

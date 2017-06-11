@@ -1,0 +1,55 @@
+<% include _header %>
+
+<% include _menu %>
+
+<h2>Process</h2>
+
+<% records.forEach(function(r) { %>
+<div>
+  <br>
+  <% if(option.askCustomerName) { %>
+  <%= r.customerName %>
+  <br>
+  <% } %>
+  <% if(option.askCustomerPersonId) { %>
+  <%= r.customerPersonId %>
+  <br>
+  <% } %>
+  <% if(option.askCustomerRelationship) { %>
+  <%= r.customerRelationship %>
+  <br>
+  <% } %>
+  <% if(option.askCustomerAddress) { %>
+  <%= r.customerAddress %>
+  <br>
+  <% } %>
+  <% if(option.askCustomerContact) { %>
+  <%= r.customerContact %>
+  <br>
+  <% } %>
+  <% if(option.askCustomerEmail) { %>
+  <%= r.customerEmail %>
+  <br>
+  <% } %>
+  <br>
+  <% if(option.askChildName) { %>
+  <%= r.childName %>
+  <br>
+  <% } %>
+  <% if(option.askChildBirthCertificateNo) { %>
+  <%= r.childBirthCertificateNo %>
+  <br>
+  <% } %>
+  <% if(option.askChildDateOfBirth) { %>
+  <%= r.childDateOfBirthDisplay() %>
+  <br>
+  <% } %>
+  <% if(option.askChildGender) { %>
+  <%= r.childGender %>
+  <br>
+  <% } %>
+</div>
+
+<% }) %>
+
+<% include _footer %>

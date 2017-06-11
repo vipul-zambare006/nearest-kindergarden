@@ -1,0 +1,84 @@
+<% include _header %>
+
+<h3><%= center.centerName %></h3>
+
+<label><%= center.centerAddress %></label>
+<br>
+<label><%= center.centerAvailable %></label>
+<br>
+<label><%= center.centerContact %></label>
+<br>
+<br>
+
+<label>Parent/Guardian</label>
+<br>
+<br>
+
+<% if(option.askCustomerName) { %>  
+<label>Name as in NRIC / FIN / Passport</label>
+<label><%= customer.customerName %></label>
+<br>
+<% } %>
+
+<% if(option.askCustomerPersonId) { %>  
+<label>NRIC / FIN / Passport No.</label>
+<label><%= customer.customerPersonId %></label>
+<br>
+<% } %>
+
+<% if(option.askCustomerRelationship) { %>  
+ <label>Relationship to child</label>
+ <label><%= customer.customerRelationship %></label> 
+<br>
+<% } %>
+
+<% if(option.askCustomerAddress) { %>  
+ <label>Address</label>
+ <label><%= customer.customerAddress %></label> 
+<br>
+<% } %>
+
+<% if(option.askCustomerContact) { %>  
+ <label>Contact number</label>
+ <label><%= customer.customerContact %></label> 
+<br>
+<% } %>
+
+<% if(option.askCustomerEmail) { %>  
+ <label>Email</label>
+ <label><%= customer.customerEmail %></label> 
+<br>
+<% } %>
+
+<br>
+<br>
+
+<label>Child</label>
+<br>
+<br>
+<% if(option.askChildName) { %>  
+<label>Name as in birth certificate</label>
+<label><%= customer.childName %></label>
+<br>
+<% } %>
+
+<% if(option.askChildBirthCertificateNo) { %>  
+<label>Birth certificate no.</label>
+<label><%= customer.childBirthCertificateNo %></label>
+<br>
+<% } %>
+
+<% if(option.askChildDateOfBirth) { %>  
+<label>Date of birth</label>
+<label><%= customer.childDateOfBirthDisplay() %></label>
+<br>
+<% } %>
+
+<% if(option.askChildGender) { %>  
+<label>Gender</label>
+<label><%= customer.childGender %></label>
+<br>
+<% } %>
+
+
+<% include _footer %>

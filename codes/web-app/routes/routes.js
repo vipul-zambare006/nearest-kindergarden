@@ -5,6 +5,7 @@ var index = require('./index');
 var signup = require('./signup');
 var kindergarten = require('./kindergarten');
 var apply = require('./apply');
+var api = require('./api');
 
 var router = express.Router();
 
@@ -19,6 +20,7 @@ router.use("/", index);
 router.use("/signup", signup);
 router.use("/kindergarten", kindergarten);
 router.use("/apply", apply);
+router.use("/api", api);
 
 router.get("/login", function(req, res) {
   res.render("login");
